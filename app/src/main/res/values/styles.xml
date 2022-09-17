@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="get_started_title_style">
+        <item name="android:fontFamily">@font/open_sans_semibold</item>
+        <item name="android:textFontWeight">800</item>
+        <item name="android:textSize">47sp</item>
+    </style>
+</resources>
