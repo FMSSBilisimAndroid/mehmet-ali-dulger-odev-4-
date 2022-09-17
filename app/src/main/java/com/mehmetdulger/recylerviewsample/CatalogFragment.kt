@@ -29,14 +29,11 @@ class CatalogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         catalogBinding = FragmentCatalogBinding.inflate(inflater)
-
-
         return catalogBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var realEstateData: RealEstateData
 
         MarsApi.retrofitService.getProperties().enqueue(object : Callback<List<RealEstateData>> {
             override fun onResponse(
@@ -44,7 +41,6 @@ class CatalogFragment : Fragment() {
                 response: Response<List<RealEstateData>>
             ) {
                 response.body()?.let { responseList ->
-
                     val adapter = RecyclerviewAdapter(responseList) { item ->
                         val action =
                             CatalogFragmentDirections.actionCatalogFragmentToDetailFragment(
@@ -52,14 +48,12 @@ class CatalogFragment : Fragment() {
                             )
                         findNavController().navigate(action)
                     }
-
                     val gridLayoutManager = GridLayoutManager(context, 2)
                     catalogBinding.apply {
                         recyclerView.layoutManager = gridLayoutManager
-                        recyclerView.addItemDecoration(SpacesItemDecoration(20))
+                        recyclerView.addItemDecoration(SpacesItemDecoration(10))
                         setVariable(BR.adapter, adapter)
                     }
-
                 }
             }
 

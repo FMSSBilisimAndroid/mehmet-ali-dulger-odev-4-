@@ -27,9 +27,7 @@ class RecyclerItemViewHolder(
         binding.imageView.load(realEstateData.img_src)
 
         binding.imageView.setOnClickListener {
-            Log.v("deneme","deneme")
-           // val action = CatalogFragmentDirections.actionCatalogFragmentToDetailFragment(realEstateData)
-           // findNavController().navigate(action)
+           onItemClickHandler(realEstateData)
         }
 
         binding.setVariable(BR.realEstateData, realEstateData)
