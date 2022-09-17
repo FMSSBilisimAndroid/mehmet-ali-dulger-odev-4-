@@ -8,5 +8,5 @@ data class RealEstateData(
     var price: String,
     var id: String,
     var type: String,
-    val imageResourceId: Int
+    val img_src: String
 ) : Parcelable

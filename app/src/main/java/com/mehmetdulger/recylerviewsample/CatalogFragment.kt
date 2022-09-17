@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mehmetdulger.recylerviewsample.databinding.FragmentCatalogBinding
 import retrofit2.Call
@@ -27,11 +29,14 @@ class CatalogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         catalogBinding = FragmentCatalogBinding.inflate(inflater)
+
+
         return catalogBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var realEstateData: RealEstateData
 
         MarsApi.retrofitService.getProperties().enqueue(object : Callback<List<RealEstateData>> {
             override fun onResponse(
@@ -41,7 +46,11 @@ class CatalogFragment : Fragment() {
                 response.body()?.let { responseList ->
 
                     val adapter = RecyclerviewAdapter(responseList) { item ->
-                        //yazılacak
+                        val action =
+                            CatalogFragmentDirections.actionCatalogFragmentToDetailFragment(
+                                item
+                            )
+                        findNavController().navigate(action)
                     }
 
                     val gridLayoutManager = GridLayoutManager(context, 2)
@@ -59,7 +68,6 @@ class CatalogFragment : Fragment() {
             }
 
         })
-
 
     }
 

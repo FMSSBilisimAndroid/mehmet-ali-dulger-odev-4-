@@ -1,7 +1,16 @@
 package com.mehmetdulger.recylerviewsample
 
+import android.app.Application
+import android.util.Log
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.databinding.ViewDataBinding
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.mehmetdulger.recylerviewsample.databinding.FragmentCatalogBinding
 import com.mehmetdulger.recylerviewsample.databinding.RecyclerItemBinding
 
 class RecyclerItemViewHolder(
@@ -15,15 +24,20 @@ class RecyclerItemViewHolder(
         val binding = realEstateBinding as RecyclerItemBinding
         binding.root.setOnClickListener { onItemClickHandler(realEstateData) }
 
-        val realEstateDataClicked = RealEstateData(
-            "right bottom clicked",
-            "right bottom clicked",
-            "right bottom clicked",
-            0
-        )
+        binding.imageView.load(realEstateData.img_src)
 
-        binding.imageView.setOnClickListener { onItemClickHandler(realEstateDataClicked) }
+        binding.imageView.setOnClickListener {
+            Log.v("deneme","deneme")
+           // val action = CatalogFragmentDirections.actionCatalogFragmentToDetailFragment(realEstateData)
+           // findNavController().navigate(action)
+        }
+
         binding.setVariable(BR.realEstateData, realEstateData)
+    }
+    fun ImageView.load(url: String) {
+        Glide.with(context)
+            .load(url)
+            .into(this)
     }
 
 }
