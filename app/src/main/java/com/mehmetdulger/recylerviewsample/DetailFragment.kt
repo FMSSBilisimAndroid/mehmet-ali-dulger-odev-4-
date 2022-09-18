@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.mehmetdulger.recylerviewsample.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -34,13 +36,20 @@ class DetailFragment : Fragment() {
         val type = args.currentRealEstateData.type
         val img_src = args.currentRealEstateData.img_src
 
+
         detailBinding.apply {
             piriceDetailTextView.text = price
             idDetailTextView.text=id
             typeDetailTextView.text=type
+            detailimageView.load(img_src)
 
         }
-
+        
+    }
+    fun ImageView.load(url: String) {
+        Glide.with(context)
+            .load(url)
+            .into(this)
     }
 
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/catalogFragment">
+    app:startDestination="@id/getStartedFragment">
 
     <fragment
         android:id="@+id/catalogFragment"
@@ -21,5 +21,13 @@
         <argument
             android:name="currentRealEstateData"
             app:argType="com.mehmetdulger.recylerviewsample.RealEstateData" />
+    </fragment>
+    <fragment
+        android:id="@+id/getStartedFragment"
+        android:name="com.mehmetdulger.recylerviewsample.GetStartedFragment"
+        android:label="GetStartedFragment" >
+        <action
+            android:id="@+id/action_getStartedFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
     </fragment>
 </navigation>
